@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>add doctor</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50vh;
+        }
+
+        .container {
+            background: #fff;
+            padding: 30px;
+            width: 350px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .back {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .back a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .back a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>New Doctor</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <input type="text" name="name" value="{{ doctors.name }}" placeholder="Enter Name" required>
+
+        <input type="text" name="phone" value="{{ doctor.phone }}" placeholder="Enter phone" required>
+
+        <input type="text" name="specialization" value="{{ doctor.specialization }}" placeholder="Enter Specialization" required>
+
+         
+        
+           <button type="submit">Add Doctor</button>
+    </form>
+
+    <div class="back">
+        <a href="/doctors/">⬅ Back to doctor</a>
+    </div>
+</div>
+
+</body>
+</html>

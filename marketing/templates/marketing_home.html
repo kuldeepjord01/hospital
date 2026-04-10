@@ -1,0 +1,292 @@
+
+
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TIMS Hospital | The Digital Sanctuary</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-error": "#ffffff",
+                      "tertiary": "#00514a",
+                      "surface-container": "#eceef0",
+                      "inverse-on-surface": "#eff1f3",
+                      "surface-tint": "#255dad",
+                      "background": "#f7f9fb",
+                      "primary": "#004691",
+                      "on-secondary-fixed": "#002020",
+                      "secondary": "#006a6a",
+                      "surface": "#f7f9fb",
+                      "tertiary-fixed": "#61f9e9",
+                      "on-primary": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container-highest": "#e0e3e5",
+                      "inverse-primary": "#abc7ff",
+                      "on-tertiary": "#ffffff",
+                      "on-surface-variant": "#424752",
+                      "surface-container-low": "#f2f4f6",
+                      "tertiary-fixed-dim": "#3adccc",
+                      "tertiary-container": "#006b62",
+                      "surface-variant": "#e0e3e5",
+                      "on-surface": "#191c1e",
+                      "secondary-fixed": "#93f2f2",
+                      "on-secondary-container": "#006e6e",
+                      "outline": "#727783",
+                      "error": "#ba1a1a",
+                      "on-secondary": "#ffffff",
+                      "primary-fixed-dim": "#abc7ff",
+                      "on-background": "#191c1e",
+                      "secondary-fixed-dim": "#76d6d5",
+                      "primary-fixed": "#d7e2ff",
+                      "on-tertiary-container": "#56f0e0",
+                      "on-tertiary-fixed": "#00201d",
+                      "on-primary-fixed-variant": "#00458f",
+                      "surface-bright": "#f7f9fb",
+                      "error-container": "#ffdad6",
+                      "on-tertiary-fixed-variant": "#005049",
+                      "inverse-surface": "#2d3133",
+                      "surface-container-high": "#e6e8ea",
+                      "surface-dim": "#d8dadc",
+                      "outline-variant": "#c2c6d4",
+                      "secondary-container": "#90efef",
+                      "on-primary-fixed": "#001b3f",
+                      "on-secondary-fixed-variant": "#004f4f",
+                      "on-primary-container": "#cadaff",
+                      "primary-container": "#265eae",
+                      "on-error-container": "#93000a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "1.5rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Manrope", "sans-serif"],
+                      "body": ["Inter", "sans-serif"],
+                      "label": ["Inter", "sans-serif"]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-nav {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(0,70,145,0.95) 0%, rgba(38,94,174,0.85) 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- Navigation -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center h-20 px-6 lg:px-12 max-w-screen-2xl mx-auto">
+<a class="text-2xl font-bold tracking-tighter text-blue-900 dark:text-blue-100" href="{% url 'home' %}">
+                TIMS Hospital
+            </a>
+<div class="hidden md:flex items-center gap-8 font-['Manrope'] font-semibold text-sm tracking-tight">
+<a class="text-blue-700 dark:text-blue-400 border-b-2 border-blue-700 dark:border-blue-400 pb-1" href="{% url 'home' %}">Home</a>
+
+                {% if user.is_authenticated %}
+                <a class="text-slate-600 dark:text-slate-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors" href="/doctors/">Doctors</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors" href="/patients/">Patients</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors" href="{% url 'dashboard' %}">Dashboard</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors" href="{% url 'logout' %}">Logout</a>
+                {% else %}
+                <a class="text-slate-600 dark:text-slate-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors" href="{% url 'login' %}">Login</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors" href="{% url 'signup' %}">Sign Up</a>
+                {% endif %}
+            </div>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="relative h-screen flex items-center overflow-hidden">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="Modern architectural exterior of a state-of-the-art medical facility at dusk with soft glowing windows and clean glass surfaces" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoJTiBmaHNPWaZrMTksP0TuGG2Nu-OJOwH1wkZjSSy7Rr72f9cULHEeT4OPDKIwcgXdFL7Q5clK4GFbnxWfuyybPnEutvzGKJrI3CHrK5bdRaGVzgd6OHU9PPuEdq4puyKzMJVUqCAZTXJpE9XMIihNvh85wa36IlwK-bJejNaiODKWZ2yZHpy2x8oLahhXxu2Ug3mOZZFNJrE4l1Co6DGLlVqg2x3E0RuS7UkFSTFbN7bomJlLcuQK9ZOQssM5l_QDEq4gSzULXJG"/>
+<div class="absolute inset-0 hero-gradient"></div>
+<div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 w-full">
+<div class="max-w-2xl">
+<span class="inline-block py-1 px-3 rounded-full bg-secondary-container text-on-secondary-container text-xs font-bold tracking-widest uppercase mb-6">
+                    Established Excellence
+                </span>
+<h1 class="font-headline text-5xl md:text-7xl font-extrabold text-white leading-tight mb-6">
+                    Welcome to <span class="text-secondary-fixed">Tims Hospital</span>
+</h1>
+<p class="text-xl md:text-2xl text-primary-fixed leading-relaxed mb-10 font-light">
+                    Your health is our priority. Best doctors, best care, in a facility designed for healing and peace.
+                </p>
+<div class="flex flex-wrap gap-4">
+<a class="bg-surface-container-lowest text-primary px-8 py-4 rounded-xl font-headline font-extrabold text-lg shadow-xl hover:scale-105 transition-transform flex items-center gap-2" href="#services">
+                        Explore Services
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+<button class="border border-white/30 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-headline font-bold text-lg hover:bg-white/10 transition-colors">
+                        Emergency Contact
+                    </button>
+</div>
+</div>
+</div>
+</header>
+<!-- Services Section -->
+<section class="py-24 px-6 lg:px-12 max-w-7xl mx-auto" id="services">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+<div>
+<h2 class="text-label-sm font-bold tracking-[0.2em] text-primary uppercase mb-4">Our Expertise</h2>
+<h3 class="font-headline text-4xl font-extrabold text-on-surface">Healthcare Excellence</h3>
+</div>
+<p class="max-w-md text-on-surface-variant text-lg">
+                We combine cutting-edge technology with compassionate care to ensure your journey to wellness is seamless.
+            </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Emergency Care -->
+<div class="group bg-surface-container-lowest p-10 rounded-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border border-outline-variant/10">
+<div class="w-16 h-16 bg-error-container text-on-error-container rounded-2xl flex items-center justify-center mb-8">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">emergency</span>
+</div>
+<h4 class="font-headline text-2xl font-bold mb-4 text-on-surface">Emergency Care</h4>
+<p class="text-on-surface-variant leading-relaxed mb-6">
+                    Round-the-clock emergency medical services with rapid response teams and advanced life support systems.
+                </p>
+<a class="text-primary font-bold flex items-center gap-2 group-hover:gap-4 transition-all" href="#">
+                    Learn More <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<!-- OPD Services -->
+<div class="group bg-surface-container-lowest p-10 rounded-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border border-outline-variant/10">
+<div class="w-16 h-16 bg-secondary-container text-on-secondary-container rounded-2xl flex items-center justify-center mb-8">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">medical_information</span>
+</div>
+<h4 class="font-headline text-2xl font-bold mb-4 text-on-surface">OPD Services</h4>
+<p class="text-on-surface-variant leading-relaxed mb-6">
+                    Specialized outpatient departments covering cardiology, neurology, and orthopedics with expert consultants.
+                </p>
+<a class="text-primary font-bold flex items-center gap-2 group-hover:gap-4 transition-all" href="#">
+                    View Specialists <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<!-- Pharmacy -->
+<div class="group bg-surface-container-lowest p-10 rounded-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border border-outline-variant/10">
+<div class="w-16 h-16 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-2xl flex items-center justify-center mb-8">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">medication</span>
+</div>
+<h4 class="font-headline text-2xl font-bold mb-4 text-on-surface">Pharmacy</h4>
+<p class="text-on-surface-variant leading-relaxed mb-6">
+                    A fully-stocked 24/7 pharmacy providing genuine medicines and home delivery services for convenience.
+                </p>
+<a class="text-primary font-bold flex items-center gap-2 group-hover:gap-4 transition-all" href="#">
+                    Order Online <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+<!-- About Us Section -->
+<section class="bg-surface-container-low py-24" id="about">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="relative">
+<div class="absolute -top-4 -left-4 w-24 h-24 bg-primary/10 rounded-xl -z-10"></div>
+<img class="rounded-xl shadow-2xl w-full h-[500px] object-cover" data-alt="High-tech clinical examination room with ultra-modern medical equipment and soft ambient lighting for a calm atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkpibKmWk25e91SmQl2tB9zHylHBopKcDhcwLvpBN2KqefvZ5P3zmzzVowBqNGXVwTlS4ndmBF6u7JI6CJbBlQqNU_ud5JhOOWRCeyl-QKIB8nhwJIIDO9nbm5n8FcjIzQxIMUc_pMbuETNwyWUYw034MKo26wjC3uMVdeZe1L4hY4hOBin-mWdFxNG_gnwlvGrIh9vshIouFVYCPuIfeoMW9dtBwMMxPJyRIubrRQnAcsMMQFZ7ptsVV8V9RV6eienIupWRTBLTwV"/>
+<div class="absolute bottom-6 right-6 bg-white p-6 rounded-xl shadow-lg max-w-xs">
+<div class="flex items-center gap-4 mb-2">
+<div class="w-2 h-2 bg-tertiary rounded-full animate-pulse"></div>
+<span class="text-sm font-bold text-on-surface">ISO 9001 Certified</span>
+</div>
+<p class="text-xs text-on-surface-variant">Meeting international standards for patient safety and medical care excellence.</p>
+</div>
+</div>
+<div>
+<h2 class="text-label-sm font-bold tracking-[0.2em] text-primary uppercase mb-4">The Digital Sanctuary</h2>
+<h3 class="font-headline text-4xl md:text-5xl font-extrabold text-on-surface mb-8 leading-tight">World-Class Healthcare, Reimagined.</h3>
+<p class="text-lg text-on-surface-variant mb-8 leading-relaxed">
+                        Tims Hospital provides world-class healthcare with modern facilities and experienced staff. We believe that medical care should be as much about comfort and dignity as it is about clinical precision.
+                    </p>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div>
+<h5 class="font-bold text-on-surface">Modern Infrastructure</h5>
+<p class="text-sm text-on-surface-variant">Equipped with the latest diagnostic and surgical technologies.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div>
+<h5 class="font-bold text-on-surface">Expert Medical Team</h5>
+<p class="text-sm text-on-surface-variant">Over 200+ specialist doctors with decades of combined experience.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Us Section -->
+<section class="py-24 bg-surface" id="contact">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<div class="bg-primary-container rounded-xl overflow-hidden shadow-2xl flex flex-col md:flex-row">
+<div class="p-12 md:w-1/2">
+<h3 class="font-headline text-3xl font-extrabold text-white mb-6">Get in Touch</h3>
+<p class="text-primary-fixed mb-10">We are here to assist you with any inquiries regarding our services, appointments, or medical records.</p>
+<div class="space-y-8">
+<div class="flex items-center gap-6">
+<div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-white">
+<span class="material-symbols-outlined">mail</span>
+</div>
+<div>
+<p class="text-primary-fixed text-xs uppercase tracking-widest font-bold">Email Us</p>
+<p class="text-white font-headline text-lg">support@timshospital.com</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-white">
+<span class="material-symbols-outlined">call</span>
+</div>
+<div>
+<p class="text-primary-fixed text-xs uppercase tracking-widest font-bold">Emergency Phone</p>
+<p class="text-white font-headline text-lg">+91 9876543210</p>
+</div>
+</div>
+</div>
+</div>
+<div class="md:w-1/2 h-full min-h-[400px]">
+<img class="w-full h-full object-cover" data-alt="Cheerful healthcare receptionist in a modern white hospital lobby with blurred clinical environment in background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBE0oMZQtyP_z4JteJScu-AS2gMiTglS0fg-9FhgacvXBIiSqDwU6jP5b2v_CrGNHXpAvmtvWqAQ8NJt1DZeoxGUcycp8_woVflU5ajBPebrovICyOzWkNnrdPr2dTSDYDSwjS9GofQmkSdIuMd38Y99z5YoC9zWEN2bGzdRTRVPso_RFP2YJ0EwBJe6iyEiGDbIIb20Nd3HM6LSu_a1bvbJ6DMpT5Y5TlnvnTQxm62KhTxbc_p1S5Kl85R5CmS1qPgEfYfZIFMH2AM"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950">
+<div class="flex flex-col md:flex-row justify-between items-center py-12 px-8 max-w-7xl mx-auto gap-6">
+<div class="flex flex-col items-center md:items-start gap-2">
+<div class="text-xl font-black text-blue-900 dark:text-blue-200 uppercase tracking-tighter">TIMS Hospital</div>
+<p class="font-['Inter'] text-xs font-medium uppercase tracking-widest text-slate-500">© 2024 TIMS Hospital. The Digital Sanctuary.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8 font-['Inter'] text-xs font-medium uppercase tracking-widest">
+<a class="text-slate-500 dark:text-slate-500 hover:text-blue-600 hover:underline transition-all" href="#">Privacy Policy</a>
+<a class="text-slate-500 dark:text-slate-500 hover:text-blue-600 hover:underline transition-all" href="#">Terms of Service</a>
+<a class="text-slate-500 dark:text-slate-500 hover:text-blue-600 hover:underline transition-all" href="#">Patient Rights</a>
+<a class="text-slate-500 dark:text-slate-500 hover:text-blue-600 hover:underline transition-all" href="#">Careers</a>
+</div>
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center opacity-90 hover:opacity-100 transition-opacity cursor-pointer">
+<span class="material-symbols-outlined text-blue-900 dark:text-blue-200">share</span>
+</div>
+</div>
+</div>
+</footer>
+</body></html>
