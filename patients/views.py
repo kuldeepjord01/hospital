@@ -5,7 +5,8 @@ from django import views
 import patients
 from .models import Patients
 from django.contrib.auth.decorators import login_required
-from .forms import PatientForm
+#from .forms import PatientForm
+
 
 
 
@@ -59,16 +60,21 @@ def patient_create(request):
     return render(request, "patient_create.html")
 
 
-@login_required
-def patient_create(request):
-    if request.method == 'POST':
-        form = PatientForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/patients/')
-    else:
-        form = PatientForm()
-    return render(request, "patient_create.html", {'form': form})
+
+
+
+#forms
+
+# @login_required
+# def patient_create(request):
+#     if request.method == 'POST':
+#         form = PatientForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('/patients/')
+#     else:
+#         form = PatientForm()
+#     return render(request, "patient_create.html", {'form': form})
 
 
 

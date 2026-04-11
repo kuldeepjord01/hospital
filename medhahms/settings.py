@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/6.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
-
+from decouple import config
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-$x&f@gujpb&7a^rl^meky$a3+)&=f1!$9k#pi3o3vg5sev_vo3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -56,6 +56,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CSRF_TRUSTED_ORIGINS =['https://medhahms.onrender.com']
+
+
 ROOT_URLCONF = 'medhahms.urls'
 
 TEMPLATES = [
@@ -80,9 +83,16 @@ WSGI_APPLICATION = 'medhahms.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+      'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT', default='5432'),
+        'OPTIONS': {
+            'sslmode': 'require',
+        },
     }
 }
 
@@ -125,6 +135,5 @@ STATIC_URL = 'static/'
 
 LOGIN_URL = '/login/'
 
-RESEND_API_KEY = "re_7KZNjLkZ_63aAMHxcdUjuhtowHfTatTS9"
 
-GEMINI_API_KEY = "AIzaSyBnKp1NGpfwMqWHm_sCgOUeNi15DvIq6_U"
+

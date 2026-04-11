@@ -14,15 +14,15 @@ def signup(request):
         user = User.objects.create_user(
             username=username,
             password=password)
-        resend.api_key = settings.RESEND_API_KEY
-        resend.Emails.send(
-            {
-              'from':'onboarding@resend.dev',
-                'to': ['kdb6208@gmail.com'],  
-                'subject': 'Welcome to Medha HMS',
-                'html': f'<h1>Welcome {user.username}</h1>'
-            }
-        )
+        # resend.api_key = settings.RESEND_API_KEY
+        # resend.Emails.send(
+        #     {
+        #       'from':'onboarding@resend.dev',
+        #         'to': ['kdb6208@gmail.com'],  
+        #         'subject': 'Welcome to Medha HMS',
+        #         'html': f'<h1>Welcome {user.username}</h1>'
+        #     }
+        #)
         auth_login(request, user)
         return redirect('dashboard')
     else:
