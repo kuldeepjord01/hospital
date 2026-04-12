@@ -135,5 +135,6 @@ STATIC_URL = 'static/'
 
 LOGIN_URL = '/login/'
 
+GEMINI_API_KEY = config('GEMINI_API_KEY')
 
 
