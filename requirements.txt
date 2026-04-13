@@ -7,3 +7,4 @@ python-decouple
 requests
 resend
 google-generativeai
+markdown-it-py
